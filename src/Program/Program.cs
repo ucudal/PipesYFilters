@@ -14,7 +14,9 @@ namespace CompAndDel
             var pipeSerial = new PipeSerial(new FilterGreyscale(),
                 new PipeSerial(new SaveFilter("mitad"),
                     new PipeSerial(new FilterNegative(),
-                        new PipeNull()
+                        new PipeSerial(new TwitterShareFilter("Publicacion pipes & filters Leandro Alfonso"),
+                            new PipeNull()
+                        )
                     )
                 )
             );
