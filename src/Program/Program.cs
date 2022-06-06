@@ -11,13 +11,13 @@ namespace CompAndDel
             string prePath = Path.Combine("..", "..", "..");
             var pProvider = new PictureProvider();
             IPicture beer = pProvider.GetPicture(Path.Combine(prePath, "beer.jpg"));
-            var pipeSerial = new PipeSerial(
-                new FilterGreyscale(), new PipeSerial(
-                    new SaveFilter("mitad"), new PipeSerial(
-                        new FilterNegative(), new PipeNull()
-                        )
+            var pipeSerial = new PipeSerial(new FilterGreyscale(),
+                new PipeSerial(new SaveFilter("mitad"),
+                    new PipeSerial(new FilterNegative(),
+                        new PipeNull()
                     )
-                );
+                )
+            );
             var resultadoBeer = pipeSerial.Send(beer);
             pProvider.SavePicture(resultadoBeer, Path.Combine(prePath, "..", "..", "resultados", "resultado_beer.jpg"));
         }
